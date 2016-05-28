@@ -98,6 +98,7 @@ def add_message():
 
             redis_store.setex(cur_user, redis_key_expire, time.time())
             redis_store.setex(get_cur_ip(), redis_key_expire, time.time())
+
             redis_store.hmset("pre_add_msg", {"title": title, "message": message})
             redis_store.expire("pre_add_msg", redis_key_expire)
 
@@ -130,8 +131,7 @@ def add_message():
 @app.route("/")
 def show_messages():
 
-    messages = Message.query.order_by(Message.pub_date)
-
+    messages = Message.query.order_by(db.desc(Message.pub_date)).all()
     return render_template("home.html", messages = messages)
 
 
@@ -230,13 +230,14 @@ def validate_capthca():
             if _user:
                 session["logged_in"] = _user
             # 验证安全，完成添加留言
-            _body = redis_store.hgetall("pre_add_message")
+            _body = redis_store.hgetall("pre_add_msg")
             if _body:
                 title = _body.get("title")
                 message = _body.get("message")
 
                 user = User.query.filter_by(username = session["logged_in"]).first()
                 msg = Message(title=title, body=message, user = user)
+
                 db.session.add(msg)
                 db.session.commit()
             return redirect("/")

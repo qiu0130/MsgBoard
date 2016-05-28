@@ -19,7 +19,6 @@ class MessageBoardTestClass(unittest.TestCase):
     def tearDown(self):
         session.clear()
 
-
     def test_exception_user_login(self):
         @app.route("/set", methods = ["POST"])
         def set():
