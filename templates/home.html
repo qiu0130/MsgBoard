@@ -1,0 +1,13 @@
+<%inherit file="base.html"/>
+
+<%block name = "content">
+  %for entry in messages:
+    <div class="entry">
+      <h1>${ entry.title|h }</h1>
+      <div class="date">${ entry.pub_date|h }</div>
+      <div class="body">${ entry.body|h }</div>
+      <div class="author" style="color:red">By ${ entry.user.username|h } </div>
+    </div>
+  %endfor
+
+</%block>

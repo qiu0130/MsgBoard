@@ -1,1 +1,3 @@
 # MsgBoard
+
+> Flask/MySQL/Redis

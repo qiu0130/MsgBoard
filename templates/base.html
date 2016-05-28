@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title> 留言版　</title>
+    <link rel="stylesheet" href="/static/msg.css" type="text/css">
+    <link rel="shortcut icon" href="/static/logo.jpg" />
+
+      <style type="text/css">
+      body {
+        padding-top: 5px;
+      }
+    </style>
+
+    <%block name = "head" />
+  </head>
+  <body>
+
+    <div id="body">
+        <a style="color:red"> IP地址:${ request.headers.get('X-Real-Ip', request.remote_addr)} </a>
+      <div id="header">
+        <div style="float:right">
+          %if session.get("logged_in", None):
+            <a> ${ session.get("logged_in", "") } </a>
+            <a href="/add">添加留言</a>
+            <a href="/logout">退出</a>
+          % else:
+            　<a href="/login">登录</a>
+          %endif
+
+        </div>
+        <h1><a href="/">留言版</a></h1>
+
+      </div>
+
+      <div id="content">
+
+       <%block name = "content"/>
+
+      </div>
+    </div>
+
+
+  </body>
+</html>
+
+
