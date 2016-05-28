@@ -33,7 +33,7 @@ class Config(object):
 
 
 class ProductionConfig(Config):
-    DEBUG = False
+    DEBUG = True
     _SQL_PARAMS = {
         'pwd': '123456',
         'host': '127.0.0.1',

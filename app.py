@@ -16,7 +16,7 @@ from flask.ext.redis import FlaskRedis
 from redis import StrictRedis
 
 
-from config import Config
+from config import ProductionConfig
 from geetest import GeetestLib
 
 captcha_id = "27bc512f6dd9a9d268d9dad909af6d6e"
@@ -27,7 +27,7 @@ redis_key_expire = 60 * 10
 
 
 app = Flask(__name__)
-app.config.from_object(Config)
+app.config.from_object(ProductionConfig)
 mako = MakoTemplates(app)
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
