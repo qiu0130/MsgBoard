@@ -4,12 +4,15 @@
 
 ###数据库使用
 
-`mysql
->create database msg;
- python 
- >> from app import db
- >> db.create_all()
-`
+mysql
+
+`create database msg;`
+
+python 
+
+`from app import db`
+
+`db.create_all()`
 
 
 ### [在线测试](http://121.42.191.38)
